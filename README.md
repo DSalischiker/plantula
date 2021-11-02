@@ -1,4 +1,4 @@
-# plantula
+# Plántula
 
 ## Project setup
 ```
