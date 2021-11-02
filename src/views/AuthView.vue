@@ -36,7 +36,7 @@
                 <div class="control">
                   <button
                     type="submit"
-                    class="button is-link"
+                    class="button is-primary"
                     :class="{ 'is-loading': isLoading }"
                   >
                     Login
@@ -95,7 +95,7 @@
                 <div class="control">
                   <button
                     type="submit"
-                    class="button is-link"
+                    class="button is-primary"
                     :class="{ 'is-loading': isLoading }"
                   >
                     Register
@@ -128,7 +128,7 @@
                 <div class="control">
                   <button
                     type="submit"
-                    class="button is-link"
+                    class="button is-primary"
                     :class="{ 'is-loading': isLoading }"
                   >
                     Reset

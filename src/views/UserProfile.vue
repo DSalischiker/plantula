@@ -47,7 +47,7 @@
               <div class="control">
                 <button
                   type="submit"
-                  class="button is-link"
+                  class="button is-primary"
                   :disabled="!hasDataChanged"
                   :class="{ 'is-loading': isLoading }"
                 >
