@@ -9,10 +9,16 @@
 
 <script>
 // @ is an alias to /src
+/* import {fb, auth} from "../firebase"; */
 
 export default {
   name: 'Home',
-  components: {
+  data() {
+    return {
+      user: null,
+    }
+  },
+  methods: {
   }
 }
 </script>
