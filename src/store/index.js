@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import user from "./user";
+import inventories from "./inventories";
 import utils from "./utils";
 
 import { auth } from "../firebase.js";
@@ -27,6 +28,7 @@ const store = new Vuex.Store({
   },
   modules: {
     user,
+    inventories,
     utils
   }
 })

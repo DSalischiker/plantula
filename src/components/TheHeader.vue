@@ -1,12 +1,12 @@
 <template>
   <b-navbar type="is-black" :spaced="true">
     <template #brand>
-      <b-navbar-item tag="router-link" :to="{ path: '/' }">
+      <b-navbar-item tag="router-link" :to="{ name: 'home' }">
         <h1 class="title" type="is-primary">plántula</h1>
       </b-navbar-item>
     </template>
     <template #start centered="true">
-      <b-navbar-item tag="router-link" :to="{ path: '/' }">
+      <b-navbar-item tag="router-link" :to="{ name: 'home' }">
         Inicio
       </b-navbar-item>
       <b-navbar-item tag="router-link" :to="{ path: '/inventory' }">

@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue';
-import AuthView from '../views/AuthView.vue';
-import UserProfile from '../views/UserProfile.vue';
 
 import store from "../store";
 
@@ -11,28 +8,28 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'home',
     meta: {
       requiresAuth: true,
-    }
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/InventoriesView.vue')
   },
   {
     path: "/auth",
     name: "auth",
-    component: AuthView,
+    component: () => import(/* webpackChunkName: "about" */ '../views/AuthView.vue')
   },
   {
     path: "/profile",
     name: "profile",
-    component: UserProfile,
     meta: {
       requiresAuth: true
-    }
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/UserProfile.vue')
   },
   {
     path: '/inventory',
-    name: 'Inventory',
+    name: 'inventory',
     meta: {
       requiresAuth: true
     },
@@ -40,6 +37,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Inventory.vue')
+  },
+  {
+    path: "/create",
+    name: "createInventory",
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/CreateInventory.vue')
   }
 ]
 
