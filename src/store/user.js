@@ -1,4 +1,4 @@
-//import { auth } from "../firebase.js";
+import { auth } from "../firebase.js";
 const state = {
   user: null,
 }
@@ -14,7 +14,7 @@ const mutations = {
 }
 
 const actions = {
-  /* getCurrentUser() {
+  getCurrentUser() {
     return new Promise((resolve, reject) => {
       const unsubscribe = auth.onAuthStateChanged(
         user => {
@@ -27,11 +27,11 @@ const actions = {
       );
     });
   },
-  async updateProfile({ commit }, { username, email, password, phone, neighbourhood }) {
+  async updateProfile({ commit }, { name, email, password }) {
     const user = auth.currentUser;
-    if (username) {
+    if (name) {
       await user.updateProfile({
-        displayName: username
+        displayName: name
       });
     }
 
@@ -43,27 +43,17 @@ const actions = {
       await user.updatePassword(password);
     }
 
-    if (phone) {
-      await user.updatePhone(phone);
-    }
-
-    if (neighbourhood) {
-      await user.updateNeighbourhood(neighbourhood);
-    }
-
     commit("setUser", user);
   },
   async doLogin({ commit }, {email, password}) {
     await auth.signInWithEmailAndPassword(email, password);
     commit("setUser", auth.currentUser);
   },
-  async doRegister({ commit }, {username, email, password, phone, neighbourhood}) {
+  async doRegister({ commit }, {name, email, password}) {
     await auth.createUserWithEmailAndPassword(email, password);
     const user = auth.currentUser;
     await user.updateProfile({
-      displayName: username,
-      phone: phone,
-      neighbourhood: neighbourhood
+      displayName: name,
     });
     commit("setUser", user);
   },
@@ -73,7 +63,7 @@ const actions = {
   },
   async doReset(context, email) {
     await auth.sendPasswordResetEmail(email);
-  } */
+  }
 }
 
 export default {

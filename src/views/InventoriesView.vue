@@ -11,31 +11,33 @@
         <button type="button" class="button is-primary">Crear inventario</button>
       </router-link>
     </section>
-    <section class="section">
-      <div class="container">
-        <h1 class="title has-text-centered is-white">
-          Inventarios
-        </h1>
-      </div>
-
-      <inventory-item :inventories="inventories" />
-    </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 /* import {fb, auth} from "../firebase"; */
-import { mapState } from "vuex";
-
-import InventoryItem from "../components/InventoryItem.vue";
+import { db } from "../firebase";
 export default {
   name: 'InventoriesView',
-  components: {
-    InventoryItem
+  async created() {
+    const user = {name: "Diegolas", city: "Buenos Aires", country: "Argentina"};
+    await db
+      .collection("users")
+      .doc("diego")
+      .set(user, { merge: true });
+
+    // Add
+    await db.collection("users").add(user);
+
+    //Get new ID and then add
   },
-  computed: {
-    ...mapState("inventories", ["inventories"])
+  data() {
+    return {
+      user: null,
+    }
+  },
+  methods: {
   }
 }
 </script>
