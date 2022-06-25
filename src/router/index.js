@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import store from "../store";
+//import store from "../store";
 
 Vue.use(VueRouter)
 
@@ -45,6 +45,14 @@ const routes = [
       requiresAuth: true
     },
     component: () => import(/* webpackChunkName: "about" */ '../views/CreateInventory.vue')
+  },
+  {
+    path: "/inventory/add",
+    name: "addPlant",
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import (/* webpackChunkName: "about" */ '../views/AddPlant.vue')
   }
 ]
 
@@ -54,7 +62,7 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach(async (to, from, next) => {
+/* router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   //Requires auth & no user
@@ -63,11 +71,11 @@ router.beforeEach(async (to, from, next) => {
 
     //Not requires auth and user (auth)
   } else if (!requiresAuth && (await store.dispatch("user/getCurrentUser"))) {
-    next({ name: "Home" });
+    next({ name: "home" });
   } else {
     //Anything else
     next();
   }
-});
+}); */
 
 export default router;

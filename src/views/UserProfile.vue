@@ -9,11 +9,11 @@
           <!-- User Profile Form -->
           <form v-if="user" @submit.prevent="updateProfile">
             <div class="field">
-              <label class="label">Name</label>
+              <label class="label">Nombre de usuario</label>
               <div class="control">
                 <input
                   :placeholder="user.displayName"
-                  v-model="userData.name"
+                  v-model="userData.username"
                   class="input"
                   type="text"
                 />
@@ -43,6 +43,34 @@
               </div>
             </div>
 
+            <div class="field">
+              <label class="label">Número de teléfono</label>
+              <div class="control">
+                <input
+                  :placeholder="user.phone"
+                  v-model="userData.phone"
+                  class="input"
+                  type="number"
+                />
+              </div>
+            </div>
+
+
+            <b-field
+              label="Barrio">
+              <b-select
+                v-model="userData.neighbourhood"
+                placeholder="Seleccioná tu barrio"
+                expanded
+              >
+                  <option value="Villa Crespo">Villa Crespo</option>
+                  <option value="Almagro">Almagro</option>
+                  <option value="Caballito">Caballito</option>
+                  <option value="Paternal">Paternal</option>
+              </b-select>
+            </b-field>
+
+
             <div class="field has-text-right">
               <div class="control">
                 <button
@@ -70,29 +98,33 @@ export default {
     return {
       isLoading: false,
       userData: {
-        name: "",
+        username: "",
         email: "",
-        password: ""
+        password: "",
+        phone: "",
+        neighbourhood: "",
       }
     };
   },
   methods: {
     async updateProfile() {
       this.isLoading = true;
-      try {
+      /* try {
         await this.$store.dispatch("user/updateProfile", {
-          name: this.userData.name,
+          username: this.userData.username,
           email: this.userData.email,
           password: this.userData.password,
+          phone: this.userData.phone,
+          neighbourhood: this.userData.neighbourhood
         });
         this.$toast.success("Account data updated");
-        this.userData.name = this.userData.email = this.userData.password = "";
+        this.userData.name = this.userData.email = this.userData.password = this.userData.phone = this.userData.neighbourhood = "";
       } catch (error) {
         console.error(error.message);
         this.$toast.error(error.message);
       } finally {
         this.isLoading = false;
-      }
+      } */
     }
   },
   computed: {
@@ -103,7 +135,12 @@ export default {
       // Email exists and is different
       this.userData.email && this.userData.email !== this.user.email ||
       // Password exists and is different
-      this.userData.password.length);
+      this.userData.password.length ||
+      // Phone exists and is different
+      this.userData.phone && this.userData.phone !== this.user.phone ||
+      // Neighbourhood exists and is different
+      this.userData.neighbourhood && this.userData.neighbourhood !== this.user.neighbourhood
+      );
     }
   }
 }

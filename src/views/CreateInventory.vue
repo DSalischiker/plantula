@@ -64,7 +64,7 @@ export default {
     async createInventory() {
       this.isLoading = true;
 
-      try {
+      /* try {
         await this.$store.dispatch("inventories/createInventory", {
           name: this.inventoryData.name,
           description: this.inventoryData.description
@@ -77,7 +77,7 @@ export default {
         this.$toast.error(error.message);
       } finally {
         this.isLoading = false;
-      }
+      } */
     }
   }
 }

@@ -54,13 +54,13 @@
             <h1 class="title has-text-centered">Register</h1>
             <form @submit.prevent="doRegister">
               <div class="field">
-                <label class="label">Name</label>
+                <label class="label">Username</label>
                 <div class="control">
                   <input
-                    v-model="userData.name"
+                    v-model="userData.username"
                     class="input"
                     type="text"
-                    placeholder="e.g. Alex"
+                    placeholder="ej: diegolas777"
                     required
                   >
                 </div>
@@ -73,7 +73,7 @@
                     v-model="userData.email"
                     class="input"
                     type="email"
-                    placeholder="e.g. alexsmith@gmail.com"
+                    placeholder="ej: alexsmith@gmail.com"
                     required
                   >
                 </div>
@@ -90,6 +90,34 @@
                   >
                 </div>
               </div>
+
+              <div class="field">
+                <label class="label">Teléfono</label>
+                <div class="control">
+                  <input
+                    v-model="userData.phone"
+                    class="input"
+                    type="text"
+                    placeholder="ej: 1122334455"
+                    required
+                  >
+                </div>
+              </div>
+
+              <b-field
+                label="Barrio">
+                <b-select
+                  v-model="userData.neighbourhood"
+                  placeholder="Seleccioná tu barrio"
+                  expanded
+                  required
+                >
+                  <option value="Villa Crespo">Villa Crespo</option>
+                  <option value="Almagro">Almagro</option>
+                  <option value="Caballito">Caballito</option>
+                  <option value="Paternal">Paternal</option>
+                </b-select>
+              </b-field>
 
               <div class="field has-text-right">
                 <div class="control">
@@ -156,23 +184,27 @@ export default {
         name: "",
         email: "",
         password: "",
+        phone: "",
+        neighbourhood: ""
       }
     }
   },
   methods: {
     redirect() {
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "home" });
     },
     resetData() {
-      this.userData.name = this.userData.email = this.userData.password = "";
+      this.userData.name = this.userData.email = this.userData.password = this.userData.phone = this.userData.neighbourhood = "";
     },
     async doRegister() {
       this.isLoading = true;
-      try {
+      /* try {
         await this.$store.dispatch("user/doRegister", {
           name: this.userData.name,
           email: this.userData.email,
           password: this.userData.password,
+          phone: this.userData.phone,
+          neighbourhood: this.userData.neighbourhood
         });
         this.$toast.success("Account created");
         this.resetData();
@@ -182,11 +214,11 @@ export default {
         console.error(error.message)
       } finally {
         this.isLoading = false;
-      }
+      } */
     },
     async doLogin() {
       this.isLoading = true;
-      try {
+      /* try {
         await this.$store.dispatch("user/doLogin", {
           email: this.userData.email,
           password: this.userData.password,
@@ -199,11 +231,11 @@ export default {
         console.error(error.message)
       } finally {
         this.isLoading = false;
-      }
+      } */
     },
     async doReset() {
       this.isLoading = true;
-      try {
+      /* try {
         await this.$store.dispatch("user/doReset", this.userData.email);
         this.$toast.success(`Please check ${this.userData.email} for further instructions.`);
         this.resetData();
@@ -212,7 +244,7 @@ export default {
         console.error(error.message)
       } finally {
         this.isLoading = false;
-      }
+      } */
     }
   }
 }
